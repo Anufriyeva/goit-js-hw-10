@@ -7,7 +7,7 @@ export function fetchBreeds() {
   return axios.get(`${API_BASE_URL}/breeds`)
     .then(response => response.data)
     .catch(error => {
-      console.error('Ошибка при выполнении запроса:', error.message);
+      console.error('Request error:', error);
       throw error;
     });
 }
@@ -20,7 +20,7 @@ export function fetchCatByBreed(breedId) {
   })
     .then(response => response.data)
     .catch(error => {
-      console.error('Ошибка при выполнении запроса:', error.message);
+      console.error('Request error:', error);
       throw error;
     });
 }
