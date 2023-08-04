@@ -23,7 +23,14 @@ function showError() {
   Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
 }
 
+function updateCatInfo() {
+  catInfo.innerHTML = '';
+}
+
 function showCatInfo(catData) {
+
+  updateCatInfo();
+
   const catImage = catData[0].url;
   const catName = catData[0].breeds[0].name;
   const catDescription = catData[0].breeds[0].description;
@@ -76,8 +83,13 @@ select.addEventListener('change', () => {
 
   fetchCatByBreed(selectedBreedId)
     .then(showCatInfo)
-    .catch(() => showError())
-    .finally(hideLoader);
+    .catch(() => {
+      showError();
+      updateCatInfo();
+    })
+    .finally(() => {
+      hideLoader();
+    });
 });
 
 init();
